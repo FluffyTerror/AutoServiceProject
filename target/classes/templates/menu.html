@@ -4,46 +4,58 @@
   <meta charset="UTF-8">
   <title>Главное меню</title>
   <style>
-    body {
-        font-family: Arial, sans-serif;
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         text-align: center;
-        margin: 50px;
+        background-image: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+        color: #fff;
     }
     h1 {
         margin-bottom: 30px;
+        font-size: 2.5em;
+        color: #333;
     }
     .menu-button {
         display: block;
-        margin: 10px auto;
+        margin: 15px auto;
         padding: 15px 30px;
         font-size: 18px;
-        color: white;
+        color: #fff;
         background-color: #4CAF50;
         border: none;
         cursor: pointer;
         text-decoration: none;
         width: 300px;
-        border-radius: 5px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
     }
     .menu-button:hover {
         background-color: #45a049;
+        transform: translateY(-3px);
     }
     .exit-button {
         background-color: #f44336;
     }
     .exit-button:hover {
         background-color: #da190b;
+        transform: translateY(-3px);
     }
   </style>
 </head>
 <body>
 <h1>Главное меню станции</h1>
 
-<!-- Кнопки меню -->
-<a th:href="@{/input}" class="menu-button">Ввод информации</a>
-<a th:href="@{/view}" class="menu-button">Просмотр информации</a>
-<a th:href="@{/search}" class="menu-button">Поиск информации</a>
-<a th:href="@{/about}" class="menu-button">Общие сведения о станции</a>
+<!-- Кнопки меню с ссылками на методы контроллеров -->
+<a th:href="@{/view-car-defects(ownerName=${'Иван Иванов'})}" class="menu-button">Просмотр дефектов автомобиля</a>
+<a th:href="@{api/car-owners/owner-info/by-number/(carNumber=${'1488ass'})}" class="menu-button">Информация о владельце</a>
+<a th:href="@{/repair-worker(defectId=${1})}" class="menu-button">Информация о ремонтнике</a>
+<a th:href="@{/car-owners}" class="menu-button">Список всех владельцев</a>
+<a th:href="@{/car-owners/add}" class="menu-button">Добавить нового владельца</a>
 <a th:href="@{/exit}" class="menu-button exit-button">Выход</a>
+
 </body>
 </html>

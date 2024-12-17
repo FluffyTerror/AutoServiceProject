@@ -5,10 +5,10 @@
 </head>
 <body>
 <h1>ФИО и адрес владельца</h1>
-<div th:if="${owner != null}">
-  <p>ФИО: <span th:text="${owner[0]}"></span></p>
-  <p>Адрес: <span th:text="${owner[1]}"></span></p>
-</div>
+<tr th:= "owner : ${carOwners} ">
+  <td th:text= "ФИО  ${owner.fullName}"></td>
+  <td th:text="Адрес ${owner.address}"></td>
+</tr>
 <a href="/">Назад</a>
 </body>
 </html>

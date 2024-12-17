@@ -1,29 +1,34 @@
 package com.FluffyTerror.AutoServiceProject.Model;
 
 import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "Cars")
-public class Cars {
+public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "Car_id")
+    @Column(name = "car_id")
     private Long carId;
 
-    @Column(name = "Owner_id", nullable = false)
-    private Long ownerId;
+    @ManyToOne
+    @JoinColumn(name = "owner_id", nullable = false)
+    private CarOwner owner;
 
-    @Column(name = "Manufacture_year", nullable = false)
+    @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Defect> defects;
+
+    @Column(name = "manufacture_year", nullable = false)
     private int manufactureYear;
 
-    @Column(name = "Manufacturer", length = 30, nullable = false)
+    @Column(name = "manufacturer", length = 30, nullable = false)
     private String manufacturer;
 
-    @Column(name = "Brand", length = 30, nullable = false)
+    @Column(name = "brand", length = 30, nullable = false)
     private String brand;
 
-    @Column(name = "Administrative_number", nullable = false)
+    @Column(name = "administrative_number", unique = true, nullable = false)
     private String administrativeNumber;
 
     // Геттеры и сеттеры
@@ -35,12 +40,20 @@ public class Cars {
         this.carId = carId;
     }
 
-    public Long getOwnerId() {
-        return ownerId;
+    public CarOwner getOwner() {
+        return owner;
     }
 
-    public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+    public void setOwner(CarOwner owner) {
+        this.owner = owner;
+    }
+
+    public List<Defect> getDefects() {
+        return defects;
+    }
+
+    public void setDefects(List<Defect> defects) {
+        this.defects = defects;
     }
 
     public int getManufactureYear() {
@@ -74,4 +87,7 @@ public class Cars {
     public void setAdministrativeNumber(String administrativeNumber) {
         this.administrativeNumber = administrativeNumber;
     }
+
+
 }
+

@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <title>Car Owners</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a.button {
+            display: inline-block;
+            padding: 8px 16px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+            background-color: #4CAF50; /* Green */
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        a.button:hover {
+            background-color: #45a049;
+        }
+    </style>
 </head>
 <body>
 <h1>Список владельцев автомобилей</h1>
-<table border="1">
+<table>
     <thead>
     <tr>
         <th>ID</th>
@@ -19,17 +49,20 @@
     </thead>
     <tbody>
     <tr th:each="owner : ${carOwners}">
-        <td th:text="${owner.ownerId}">1</td>
-        <td th:text="${owner.fullName}">John Doe</td>
-        <td th:text="${owner.address}">123 Elm Street</td>
-        <td th:text="${owner.carBrand}">Toyota</td>
-        <td th:text="${owner.administrativeNumber}">ABC12345</td>
+        <td th:text="${owner.owner_id}"></td>
+        <td th:text="${owner.fullName}"></td>
+        <td th:text="${owner.address}"></td>
+        <td th:text="${owner.carBrand}"></td>
+        <td th:text="${owner.administrativeNumber}"></td>
         <td>
-            <a th:href="@{/car-owners/delete/{id}(id=${owner.ownerId})}">Удалить</a>
+            <a th:href="@{/car-owners/delete/{id}(id=${owner.owner_id})}">Удалить</a>
         </td>
     </tr>
     </tbody>
 </table>
-<a href="/car-owners/add">Добавить владельца</a>
+<div>
+    <a href="/" class="button">Вернуться в меню</a>
+</div>
+<a href="/car-owners/add" class="button">Добавить владельца</a>
 </body>
 </html>

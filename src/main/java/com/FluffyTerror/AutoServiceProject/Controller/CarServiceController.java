@@ -5,12 +5,11 @@ import com.FluffyTerror.AutoServiceProject.Repository.CarOwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/car-owners")
+@RequestMapping("api/car-owners")
 public class CarServiceController {
 
     @Autowired

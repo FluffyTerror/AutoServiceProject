@@ -21,6 +21,8 @@ public interface CarOwnerRepository extends JpaRepository<CarOwner, Long> {
             "WHERE o.fullName = :ownerName")
     List<Object[]> findCarDefectsByOwner(@Param("ownerName") String ownerName);
 
-    @Query("SELECT o.fullName, o.address FROM CarOwner o WHERE o.administrativeNumber = :adminNumber")
+    @Query("SELECT o.fullName, o.address " +
+            "FROM CarOwner o JOIN o.cars c " +
+            "WHERE c.administrativeNumber = :adminNumber")
     Optional<Object[]> findOwnerInfoByCarNumber(@Param("adminNumber") String adminNumber);
 }

@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name = "Defects")
-public class Defects {
+public class Defect {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,7 +13,7 @@ public class Defects {
 
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
-    private Cars car;
+    private Car car;
 
     @Column(name = "description", nullable = false)
     private String description;
@@ -30,11 +30,11 @@ public class Defects {
         this.defectId = defectId;
     }
 
-    public Cars getCar() {
+    public Car getCar() {
         return car;
     }
 
-    public void setCar(Cars car) {
+    public void setCar(Car car) {
         this.car = car;
     }
 

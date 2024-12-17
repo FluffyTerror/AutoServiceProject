@@ -1,13 +1,12 @@
 package com.FluffyTerror.AutoServiceProject.Model;
 
-
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
 @Entity
 @Table(name = "Repairs")
-public class Repairs {
+public class Repair {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -16,10 +15,11 @@ public class Repairs {
 
     @ManyToOne
     @JoinColumn(name = "defect_id", nullable = false)
-    private Defects defect;
+    private Defect defect;
 
-    @Column(name = "worker_id", nullable = false)
-    private Long workerId;
+    @ManyToOne
+    @JoinColumn(name = "worker_id", nullable = false)
+    private Worker worker;
 
     @Column(name = "repair_date", nullable = false)
     private LocalDate repairDate;
@@ -39,20 +39,20 @@ public class Repairs {
         this.repairId = repairId;
     }
 
-    public Defects getDefect() {
+    public Defect getDefect() {
         return defect;
     }
 
-    public void setDefect(Defects defect) {
+    public void setDefect(Defect defect) {
         this.defect = defect;
     }
 
-    public Long getWorkerId() {
-        return workerId;
+    public Worker getWorker() {
+        return worker;
     }
 
-    public void setWorkerId(Long workerId) {
-        this.workerId = workerId;
+    public void setWorker(Worker worker) {
+        this.worker = worker;
     }
 
     public LocalDate getRepairDate() {

@@ -1,13 +1,15 @@
 package com.FluffyTerror.AutoServiceProject.Controller;
 
-import java.util.List;
-
+import com.FluffyTerror.AutoServiceProject.Model.Car;
 import com.FluffyTerror.AutoServiceProject.Model.CarOwner;
 import com.FluffyTerror.AutoServiceProject.Repository.CarOwnerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
 @Controller
 @RequestMapping("/car-owners")
 public class CarOwnerController {
@@ -20,22 +22,21 @@ public class CarOwnerController {
     public String listCarOwners(Model model) {
         List<CarOwner> carOwners = carOwnerRepository.findAll();
         model.addAttribute("carOwners", carOwners);
-        return "car-owners"; // Переход к car-owners.html
+        return "car-owners"; // Ожидается car-owners.html
     }
 
-    // Страница для добавления нового владельца
     @GetMapping("/add")
     public String showAddCarOwnerForm(Model model) {
         model.addAttribute("carOwner", new CarOwner());
-        return "add-car-owner"; // Переход к add-car-owner.html
+        return "add-car-owner"; // Шаблон HTML
     }
 
-    // Обработка формы добавления владельца
     @PostMapping("/add")
-    public String addCarOwner(@ModelAttribute CarOwner carOwner) {
+    public String addCarOwner(@ModelAttribute("carOwner") CarOwner carOwner) {
         carOwnerRepository.save(carOwner);
         return "redirect:/car-owners";
     }
+
 
     // Удаление владельца
     @GetMapping("/delete/{id}")

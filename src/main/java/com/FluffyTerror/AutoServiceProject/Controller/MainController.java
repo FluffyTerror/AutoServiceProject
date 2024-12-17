@@ -6,8 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 
 @Controller
 public class MainController {
@@ -18,26 +18,30 @@ public class MainController {
     @Autowired
     private RepairService repairService;
 
+    // Главная страница
     @GetMapping("/")
     public String home() {
-        return "index";
+        return "menu"; // Ожидается menu.html
     }
 
+    // Просмотр дефектов автомобиля
     @GetMapping("/view-car-defects")
     public String viewCarDefects(@RequestParam("ownerName") String ownerName, Model model) {
         model.addAttribute("defects", carOwnerService.getCarDefectsByOwner(ownerName));
-        return "car_defects";
+        return "car-defects"; // Ожидается car-defects.html
     }
 
+    // Информация о владельце автомобиля
     @GetMapping("/owner-info")
     public String getOwnerInfo(@RequestParam("carNumber") String carNumber, Model model) {
         model.addAttribute("owner", carOwnerService.getOwnerInfoByCarNumber(carNumber));
-        return "owner_info";
+        return "owner-info"; // Ожидается owner-info.html
     }
 
+    // Информация о ремонтнике
     @GetMapping("/repair-worker")
     public String getRepairWorker(@RequestParam("defectId") Long defectId, Model model) {
         model.addAttribute("workers", repairService.getRepairWorkerByDefectId(defectId));
-        return "repair_worker";
+        return "repair-worker"; // Ожидается repair-worker.html
     }
 }
