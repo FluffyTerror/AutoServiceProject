@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Главное меню</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        text-align: center;
+        margin: 50px;
+    }
+    h1 {
+        margin-bottom: 30px;
+    }
+    .menu-button {
+        display: block;
+        margin: 10px auto;
+        padding: 15px 30px;
+        font-size: 18px;
+        color: white;
+        background-color: #4CAF50;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        width: 300px;
+        border-radius: 5px;
+    }
+    .menu-button:hover {
+        background-color: #45a049;
+    }
+    .exit-button {
+        background-color: #f44336;
+    }
+    .exit-button:hover {
+        background-color: #da190b;
+    }
+  </style>
+</head>
+<body>
+<h1>Главное меню станции</h1>
+
+<!-- Кнопки меню -->
+<a th:href="@{/input}" class="menu-button">Ввод информации</a>
+<a th:href="@{/view}" class="menu-button">Просмотр информации</a>
+<a th:href="@{/search}" class="menu-button">Поиск информации</a>
+<a th:href="@{/about}" class="menu-button">Общие сведения о станции</a>
+<a th:href="@{/exit}" class="menu-button exit-button">Выход</a>
+</body>
+</html>

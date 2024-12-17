@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Информация о владельце</title>
+</head>
+<body>
+<h1>ФИО и адрес владельца</h1>
+<div th:if="${owner != null}">
+  <p>ФИО: <span th:text="${owner[0]}"></span></p>
+  <p>Адрес: <span th:text="${owner[1]}"></span></p>
+</div>
+<a href="/">Назад</a>
+</body>
+</html>

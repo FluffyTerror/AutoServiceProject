@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Неисправности автомобиля</title>
+</head>
+<body>
+<h1>Неисправности автомобиля</h1>
+<table>
+  <tr>
+    <th>Владелец</th>
+    <th>Госномер</th>
+    <th>Марка</th>
+    <th>Производитель</th>
+    <th>Год выпуска</th>
+    <th>Описание</th>
+    <th>Статус</th>
+  </tr>
+  <tr th:each="defect : ${defects}">
+    <td th:text="${defect[0]}"></td>
+    <td th:text="${defect[1]}"></td>
+    <td th:text="${defect[2]}"></td>
+    <td th:text="${defect[3]}"></td>
+    <td th:text="${defect[4]}"></td>
+    <td th:text="${defect[5]}"></td>
+    <td th:text="${defect[6]}"></td>
+  </tr>
+</table>
+<a href="/">Назад</a>
+</body>
+</html>
