@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Список госномеров</h1>
+<ul>
+  <th:block th:each="carNumber : ${carNumbers}">
+    <li>
+      <a th:href="@{/owner-info/{number}(number=${carNumber})}" th:text="${carNumber}"></a>
+    </li>
+  </th:block>
+</ul>
+<div>
+    <a href="/" class="button">Вернуться в меню</a>
+</div>
+</body>
+</html>

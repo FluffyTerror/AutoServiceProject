@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Решенные дефекты</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: auto;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        thead {
+            background-color: #007bff;
+            color: white;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #0056b3;
+        }
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        tbody tr:hover {
+            background-color: #e9ecef;
+        }
+        td {
+            color: #333;
+        }
+        .resolved {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .not-resolved {
+            color: #dc3545;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+<h1>Решенные дефекты автомобиля</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID Дефекта</th>
+        <th>Описание</th>
+        <th>Решен</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="defect : ${defects}">
+        <td th:text="${defect.defectId}"></td>
+        <td th:text="${defect.description}"></td>
+        <td th:text="${defect.resolved ? 'Yes' : 'No'}"
+            th:classappend="${defect.resolved ? 'resolved' : 'not-resolved'}"></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a href="/" class="button">Вернуться в меню</a>
+</div>
+</body>
+</html>
+

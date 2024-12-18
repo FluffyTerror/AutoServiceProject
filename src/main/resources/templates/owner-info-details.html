@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Информация о владельце</h1>
+<th:block th:each="owner : ${owner}">
+    <p>Имя: <span th:text="${owner.fullName}"></span></p>
+    <p>Адрес: <span th:text="${owner.address}"></span></p>
+</th:block>
+<div>
+    <a href="/" class="button">Вернуться в меню</a>
+</div>
+</body>
+</html>

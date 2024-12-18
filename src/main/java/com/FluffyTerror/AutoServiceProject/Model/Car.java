@@ -16,6 +16,10 @@ public class Car {
     @JoinColumn(name = "owner_id", nullable = false)
     private CarOwner owner;
 
+    // Регистрационный номер
+    @Column(unique = true)
+    private String administrativeNumber;
+
     @OneToMany(mappedBy = "car", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Defect> defects;
 
@@ -28,8 +32,6 @@ public class Car {
     @Column(name = "brand", length = 30, nullable = false)
     private String brand;
 
-    @Column(name = "administrative_number", unique = true, nullable = false)
-    private String administrativeNumber;
 
     // Геттеры и сеттеры
     public Long getCarId() {

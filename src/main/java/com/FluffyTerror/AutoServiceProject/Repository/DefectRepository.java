@@ -17,4 +17,5 @@ public interface DefectRepository extends JpaRepository<Defect, Long> {
             "JOIN c.owner o " +
             "WHERE o.fullName = :ownerName AND d.resolved = true")
     List<String> findResolvedDefectsByOwner(@Param("ownerName") String ownerName);
+    List<Defect> findByCar_CarIdAndResolvedTrue(Long carId);
 }

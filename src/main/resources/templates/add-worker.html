@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавить работника</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background-color: #f4f7f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #4a90e2;
+      text-align: center;
+    }
+    form {
+      max-width: 500px;
+      margin: auto;
+      padding: 30px;
+      background: #ffffff;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input[type="text"], button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    button:hover {
+      background-color: #357ab8;
+    }
+  </style>
+</head>
+<body>
+<h1>Добавить работника</h1>
+<form action="#" th:action="@{/workers/add}" th:object="${worker}" method="post">
+  <label for="fullName">ФИО:</label>
+  <input type="text" id="fullName" th:field="*{fullName}" required/><br/>
+
+  <button type="submit">Добавить</button>
+  <div>
+    <a href="/" class="button">Вернуться в меню</a>
+  </div>
+</form>
+<p th:text="${message}"></p>
+
+<script>
+  // Проверка заполнения формы
+  document.querySelector('form').addEventListener('submit', function(event) {
+    const fullNameInput = document.getElementById('fullName');
+    if (fullNameInput.value.trim() === '') {
+      event.preventDefault();
+      alert('ФИО не может быть пустым!');
+    }
+  });
+</script>
+</body>
+</html>

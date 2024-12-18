@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Добавить дефект</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #e0f7fa;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      color: #00796b;
+      text-align: center;
+    }
+    form {
+      max-width: 600px;
+      margin: auto;
+      padding: 20px;
+      background: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    label {
+      font-weight: bold;
+      margin-top: 10px;
+      display: block;
+    }
+    input[type="text"], select, input[type="checkbox"], button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    input[type="checkbox"] {
+      width: auto;
+    }
+    button {
+      background-color: #00796b;
+      color: white;
+      border: none;
+      cursor: pointer;
+      margin-top: 20px;
+      font-size: 18px;
+    }
+    button:hover {
+      background-color: #004d40;
+    }
+  </style>
+</head>
+<body>
+<h1>Добавить дефект</h1>
+<form action="#" th:action="@{/defects/add}" th:object="${defect}" method="post">
+  <label for="description">Описание:</label>
+  <input type="text" id="description" th:field="*{description}" required/><br/>
+
+  <label for="resolved">Решен:</label>
+  <input type="checkbox" id="resolved" th:field="*{resolved}" /><br/>
+
+  <label for="carSelect">Автомобиль:</label>
+  <select id="carSelect" th:field="*{car.carId}">
+    <option th:each="car : ${cars}" th:value="${car.carId}" th:text="${car.manufacturer + ' ' + car.brand}"></option>
+  </select><br/>
+
+  <button type="submit">Добавить</button>
+  <div>
+    <a href="/" class="button">Вернуться в меню</a>
+  </div>
+</form>
+<p th:text="${message}"></p>
+
+<script>
+  // Получаем элементы
+  const carSelect = document.getElementById('carSelect');
+
+  // Инициализируем выбранный автомобиль при загрузке страницы
+  if (carSelect.options.length > 0) {
+    carSelect.selectedIndex = 0;
+  }
+</script>
+</body>
+</html>

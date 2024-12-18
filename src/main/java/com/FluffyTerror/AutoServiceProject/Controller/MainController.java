@@ -24,24 +24,7 @@ public class MainController {
         return "menu"; // Ожидается menu.html
     }
 
-    // Просмотр дефектов автомобиля
-    @GetMapping("/view-car-defects")
-    public String viewCarDefects(@RequestParam("ownerName") String ownerName, Model model) {
-        model.addAttribute("defects", carOwnerService.getCarDefectsByOwner(ownerName));
-        return "car-defects"; // Ожидается car-defects.html
-    }
 
-    // Информация о владельце автомобиля
-    @GetMapping("/owner-info")
-    public String getOwnerInfo(@RequestParam("carNumber") String carNumber, Model model) {
-        model.addAttribute("owner", carOwnerService.getOwnerInfoByCarNumber(carNumber));
-        return "owner-info"; // Ожидается owner-info.html
-    }
 
-    // Информация о ремонтнике
-    @GetMapping("/repair-worker")
-    public String getRepairWorker(@RequestParam("defectId") Long defectId, Model model) {
-        model.addAttribute("workers", repairService.getRepairWorkerByDefectId(defectId));
-        return "repair-worker"; // Ожидается repair-worker.html
-    }
+
 }

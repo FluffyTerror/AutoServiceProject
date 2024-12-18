@@ -9,26 +9,20 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("api/car-owners")
+@RequestMapping("/car-services")
 public class CarServiceController {
 
     @Autowired
     private CarOwnerRepository carOwnerRepository;
 
     // Получение всех владельцев
-    @GetMapping
+    @GetMapping("/owners")
     public List<CarOwner> getAllCarOwners() {
         return carOwnerRepository.findAll();
     }
 
-    // Получение владельца по номеру машины
-    @GetMapping("/by-number/{number}")
-    public Optional<Object[]> getCarOwnerByNumber(@PathVariable String number) {
-        return carOwnerRepository.findOwnerInfoByCarNumber(number);
-    }
-
     // Добавление нового владельца
-    @PostMapping
+    @PostMapping("/add")
     public CarOwner addCarOwner(@RequestBody CarOwner carOwner) {
         return carOwnerRepository.save(carOwner);
     }
@@ -38,4 +32,5 @@ public class CarServiceController {
     public void deleteCarOwner(@PathVariable Long id) {
         carOwnerRepository.deleteById(id);
     }
+
 }

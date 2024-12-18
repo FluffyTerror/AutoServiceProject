@@ -11,6 +11,10 @@ import java.util.Optional;
 
 @Repository
 public interface CarOwnerRepository extends JpaRepository<CarOwner, Long> {
+    @Query("SELECT c.brand, c.manufacturer, c.manufactureYear " +
+            "FROM CarOwner o JOIN o.cars c " +
+            "WHERE o.fullName = :ownerName")
+    List<Object[]> findCarsByOwnerName(@Param("ownerName") String ownerName);
 
     @Query("SELECT o.fullName AS ownerName, c.administrativeNumber AS licensePlate, c.brand AS carBrand, " +
             "c.manufacturer AS manufacturer, c.manufactureYear AS manufactureYear, d.description AS defectDescription, " +

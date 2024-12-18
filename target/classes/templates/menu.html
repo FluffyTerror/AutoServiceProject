@@ -50,12 +50,15 @@
 <h1>Главное меню станции</h1>
 
 <!-- Кнопки меню с ссылками на методы контроллеров -->
-<a th:href="@{/view-car-defects(ownerName=${'Иван Иванов'})}" class="menu-button">Просмотр дефектов автомобиля</a>
-<a th:href="@{api/car-owners/owner-info/by-number/(carNumber=${'1488ass'})}" class="menu-button">Информация о владельце</a>
-<a th:href="@{/repair-worker(defectId=${1})}" class="menu-button">Информация о ремонтнике</a>
+<a th:href="@{/view-car-defects}" class="menu-button">Просмотр дефектов автомобиля</a>
+<a th:href="@{/owner-info}" class="menu-button">Информация о владельце</a>
+<a th:href="@{/repair-worker}" class="menu-button">Информация о ремонтнике</a>
 <a th:href="@{/car-owners}" class="menu-button">Список всех владельцев</a>
 <a th:href="@{/car-owners/add}" class="menu-button">Добавить нового владельца</a>
-<a th:href="@{/exit}" class="menu-button exit-button">Выход</a>
+<a th:href="@{/workers/add}" class="menu-button">Добавить нового работника</a>
+<a th:href="@{/defects/add}" class="menu-button">Добавить новый дефект</a>
+<a th:href="@{/cars/add}" class="menu-button">Добавить новую машину</a>
+<a href="/exit" class="menu-button exit-button">Выход</a>
 
 </body>
 </html>

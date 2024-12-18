@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Все дефекты</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Все дефекты</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID Дефекта</th>
+        <th>Описание</th>
+        <th>Решен</th>
+        <th>Действия</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="defect : ${defects}">
+        <td th:text="${defect.defectId}"></td>
+        <td th:text="${defect.description}"></td>
+        <td th:text="${defect.resolved ? 'Да' : 'Нет'}"></td>
+        <td><a th:href="@{'/repair-worker/' + ${defect.defectId}}">Подробнее</a></td>
+    </tr>
+    </tbody>
+</table>
+<div>
+    <a href="/" class="button">Вернуться в меню</a>
+</div>
+</body>
+</html>
