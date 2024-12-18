@@ -75,10 +75,12 @@
     </thead>
     <tbody>
     <th:block th:each="defect : ${defects}">
-        <td th:text="${defect.id}"></td>
-        <td th:text="${defect.description}"></td>
-        <td th:text="${defect.resolved ? 'Yes' : 'No'}"
-            th:classappend="${defect.resolved ? 'resolved' : 'not-resolved'}"></td>
+        <tr>
+            <td th:text="${defect.id}"></td>
+            <td th:text="${defect.description}"></td>
+            <td th:text="${defect.resolved ? 'Yes' : 'No'}"
+                th:classappend="${defect.resolved ? 'resolved' : 'not-resolved'}"></td>
+        </tr>
     </th:block>
     </tbody>
 </table>
@@ -87,4 +89,3 @@
 </div>
 </body>
 </html>
-

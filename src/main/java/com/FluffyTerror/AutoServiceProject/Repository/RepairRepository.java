@@ -1,5 +1,6 @@
 package com.FluffyTerror.AutoServiceProject.Repository;
 
+import com.FluffyTerror.AutoServiceProject.Model.Car;
 import com.FluffyTerror.AutoServiceProject.Model.Repair;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Repository
 public interface RepairRepository extends JpaRepository<Repair, Long> {
+
     Optional<Repair> findByDefectId(Long defectId);
     @Query("SELECT w.fullName AS workerName, r.startTime, r.endTime " +
             "FROM Repair r JOIN r.worker w WHERE r.defect.id = :defectId")
@@ -20,4 +22,10 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
             "FROM Repair r " +
             "GROUP BY r.worker.fullName, r.defect.car.brand,r.defect.description")
     List<Object[]> getRepairReport();
+
+    @Query("SELECT r.defect.car FROM Repair r WHERE r.worker.id = :workerId")
+    List<Car> findCarsRepairedByWorker(@Param("workerId") Long workerId);
+
+    List<Repair> findByWorkerId(Long workerId);
+
 }

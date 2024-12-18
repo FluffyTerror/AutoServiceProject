@@ -1,5 +1,6 @@
 package com.FluffyTerror.AutoServiceProject.Service;
 
+import com.FluffyTerror.AutoServiceProject.Model.Car;
 import com.FluffyTerror.AutoServiceProject.Model.Defect;
 import com.FluffyTerror.AutoServiceProject.Model.Repair;
 import com.FluffyTerror.AutoServiceProject.Model.Worker;
@@ -23,6 +24,14 @@ public class RepairService {
 
     @Autowired
     private WorkerRepository workerRepository;
+
+    public List<Repair> getRepairsByWorkerId(Long workerId) {
+        return repairRepository.findByWorkerId(workerId);
+    }
+
+    public List<Car> getCarsRepairedByWorker(Long workerId) {
+        return repairRepository.findCarsRepairedByWorker(workerId);
+    }
 
     public Repair getRepairDetailsByDefectId(Long defectId) {
         return repairRepository.findByDefectId(defectId)

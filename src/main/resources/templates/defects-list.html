@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Список дефектов</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .defect-list {
+            margin: 0 auto;
+            max-width: 800px;
+            background: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+        }
+        .defect-item {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+        .defect-item:last-child {
+            border-bottom: none;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<h1>Список дефектов</h1>
+<ul>
+    <li th:each="defect : ${defects}">
+        <a th:href="@{/defects-owners/{id}(id=${defect.id})}" th:text="${defect.description}"></a>
+    </li>
+</ul>
+</body>
+</html>

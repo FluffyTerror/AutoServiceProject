@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Ремонты работника</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .repair-list {
+        margin: 0 auto;
+        max-width: 800px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+    .repair-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .repair-item:last-child {
+        border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+<h1 th:text="'Ремонты работника: ' + ${worker.fullName}"></h1>
+<div class="repair-list">
+  <div th:each="repair : ${repairs}" class="repair-item">
+    <p th:text="'Дата ремонта: ' + ${repair.date}"></p>
+    <p th:text="'Время ремонта: ' + ${repair.startTime} + ' - ' + ${repair.endTime}"></p>
+    <p th:text="'Описание дефекта: ' + ${repair.defect.description}"></p>
+  </div>
+</div>
+</body>
+</html>

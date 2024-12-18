@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Владельцы с дефектом</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .owner-list {
+        margin: 0 auto;
+        max-width: 800px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+    .owner-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .owner-item:last-child {
+        border-bottom: none;
+    }
+  </style>
+</head>
+<body>
+<h1 th:text="'Владельцы с дефектом: ' + ${defect.description}"></h1>
+<div class="owner-list">
+  <div th:each="owner : ${owners}" class="owner-item">
+    <p th:text="'ФИО: ' + ${owner.fullName}"></p>
+  </div>
+</div>
+</body>
+</html>

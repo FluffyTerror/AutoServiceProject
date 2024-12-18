@@ -4,13 +4,11 @@ import com.FluffyTerror.AutoServiceProject.Model.Repair;
 import com.FluffyTerror.AutoServiceProject.Repository.WorkerRepository;
 import com.FluffyTerror.AutoServiceProject.Service.DefectService;
 import com.FluffyTerror.AutoServiceProject.Service.RepairService;
+import com.FluffyTerror.AutoServiceProject.Service.WorkerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/repair")
@@ -25,6 +23,9 @@ public class RepairController {
     @Autowired
     private WorkerRepository workerRepository;
 
+    @Autowired
+    private WorkerService workerService;
+
     @GetMapping("/create")
     public String showCreateRepairForm(Model model) {
         model.addAttribute("repair", new Repair());
@@ -37,5 +38,19 @@ public class RepairController {
     public String createRepair(@ModelAttribute Repair repair) {
         repairService.createRepair(repair);
         return "redirect:/repair-worker";
+    }
+
+    @GetMapping
+    public String getAllWorkers(Model model) {
+        model.addAttribute("workers", workerService.getAllWorkers());
+        return "workers-list"; // Шаблон для отображения списка работников
+    }
+
+    // Ремонты, выполненные конкретным работником
+    @GetMapping("/{workerId}")
+    public String getRepairsByWorker(@PathVariable Long workerId, Model model) {
+        model.addAttribute("repairs", repairService.getRepairsByWorkerId(workerId));
+        model.addAttribute("worker", workerService.getWorkerById(workerId));
+        return "worker-repairs"; // Шаблон для отображения ремонтов конкретного работника
     }
 }
