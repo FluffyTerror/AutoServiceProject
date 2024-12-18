@@ -26,5 +26,5 @@ public interface CarOwnerRepository extends JpaRepository<CarOwner, Long> {
     List<Object[]> findCarDefectsByOwner(@Param("ownerName") String ownerName);
 
 
-    Optional<CarOwner> findByCarsAdministrativeNumber(S-tring administrativeNumber);
+    Optional<CarOwner> findByCarsAdministrativeNumber(String administrativeNumber);
 }
