@@ -9,7 +9,10 @@ import com.FluffyTerror.AutoServiceProject.Repository.WorkerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RepairService {
@@ -41,5 +44,21 @@ public class RepairService {
 
         // Сохранение ремонта
         repairRepository.save(repair);
+    }
+    public List<Map<String, Object>> getStationReport(){
+        List<Object[]> rawData = repairRepository.getRepairReport();
+        List<Map<String, Object>> report = new ArrayList<>();
+
+        for (Object[] row : rawData) {
+            Map<String, Object> reportEntry = new HashMap<>();
+            reportEntry.put("workerName", row[0]);
+            reportEntry.put("carBrand", row[1]);
+            reportEntry.put("carCount", row[2]);
+            reportEntry.put("repairTime", row[3]);
+            reportEntry.put("defect", row[4]);
+            report.add(reportEntry);
+        }
+
+        return report;
     }
 }

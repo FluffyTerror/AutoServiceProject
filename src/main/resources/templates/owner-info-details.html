@@ -3,6 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <title>Информация о владельце</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            color: #333;
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #007BFF;
+            text-shadow: 2px 2px 5px rgba(0, 123, 255, 0.5);
+            margin-bottom: 30px;
+        }
+        div {
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 400px;
+            margin: 15px;
+            text-align: center;
+        }
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+        span {
+            color: #555;
+        }
+        .error {
+            color: #ff0000;
+            font-weight: bold;
+        }
+        .button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+        .button:hover {
+            background-color: #218838;
+        }
+        a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+    a:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
 </head>
 <body>
 <h1>Информация о владельце</h1>
@@ -10,7 +77,7 @@
     <p>Имя: <span th:text="${owner.fullName}"></span></p>
     <p>Адрес: <span th:text="${owner.address}"></span></p>
 </div>
-<div th:if="${error != null}">
+<div th:if="${error != null}" class="error">
     <p th:text="${error}"></p>
 </div>
 <div>
@@ -18,3 +85,4 @@
 </div>
 </body>
 </html>
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Video Page</title>
+  <style>
+    .video-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    iframe {
+        width: 80%;
+        height: 750px;
+    }
+  </style>
+</head>
+<body>
+<div class="video-container">
+  <iframe id="youtube-iframe" src="https://www.youtube.com/embed/PkT0PJwy8mI?autoplay=1&mute=0&rel=0" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<script>
+  // JavaScript to auto play the video when the page loads
+  window.addEventListener('load', function() {
+      var iframe = document.querySelector('iframe');
+      var player = iframe.contentWindow;
+
+      // Use postMessage to interact with the player
+      player.postMessage('{"event":"command","func":"playVideo","args":""}', '*');
+  });
+</script>
+</body>
+</html>

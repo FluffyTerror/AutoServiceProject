@@ -22,13 +22,13 @@ public class CarOwnerController {
     public String listCarOwners(Model model) {
         List<CarOwner> carOwners = carOwnerRepository.findAll();
         model.addAttribute("carOwners", carOwners);
-        return "car-owners"; // Ожидается car-owners.html
+        return "car-owners";
     }
 
     @GetMapping("/add")
     public String showAddCarOwnerForm(Model model) {
         model.addAttribute("carOwner", new CarOwner());
-        return "add-car-owner"; // Шаблон HTML
+        return "add-car-owner";
     }
 
     @PostMapping("/add")
@@ -37,8 +37,6 @@ public class CarOwnerController {
         return "redirect:/car-owners";
     }
 
-
-    // Удаление владельца
     @GetMapping("/delete/{id}")
     public String deleteCarOwner(@PathVariable Long id) {
         carOwnerRepository.deleteById(id);

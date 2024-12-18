@@ -19,7 +19,7 @@ public class OwnerInfoController {
     @GetMapping
     public String listCarNumbers(Model model) {
         model.addAttribute("carNumbers", carOwnerService.getAllCarNumbers());
-        return "owner-info-numbers"; // Шаблон для отображения номеров
+        return "owner-info-numbers";
     }
 
     // Информация о владельце по номеру машины
@@ -30,7 +30,7 @@ public class OwnerInfoController {
                         owner -> model.addAttribute("owner", owner),
                         () -> model.addAttribute("error", "Владелец с таким номером не найден")
                 );
-        return "owner-info-details"; // Шаблон для отображения информации о владельце
+        return "owner-info-details";
     }
 
 }

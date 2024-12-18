@@ -23,14 +23,13 @@ public class RepairWorkerController {
     @GetMapping
     public String listDefects(Model model) {
         model.addAttribute("defects", defectService.getAllDefects());
-        return "repair-worker-defects"; // Шаблон для отображения дефектов
+        return "repair-worker-defects";
     }
 
     // Информация о рабочем по выбранному дефекту
-    // Информация о ремонте по выбранному дефекту
     @GetMapping("/{defectId}")
     public String getRepairDetails(@PathVariable Long defectId, Model model) {
         model.addAttribute("repair", repairService.getRepairDetailsByDefectId(defectId));
-        return "repair-worker-details"; // Шаблон для отображения деталей ремонта
+        return "repair-worker-details";
     }
 }

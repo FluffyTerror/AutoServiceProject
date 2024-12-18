@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Отчет о работе станции</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 20px;
+    }
+    h1 {
+        color: #333;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    th {
+        background-color: #f2f2f2;
+        text-align: left;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    a {
+            text-decoration: none;
+            color: #007bff;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+    a:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+  </style>
+</head>
+<body>
+<h1>Отчет о работе станции техобслуживания</h1>
+<table>
+  <thead>
+  <tr>
+    <th>ФИО Работника</th>
+    <th>Марка Автомобиля</th>
+    <th>Количество Ремонтов</th>
+    <th>Общее Время Ремонта (минуты)</th>
+    <th>Список неисправностей</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="entry : ${report}">
+    <td th:text="${entry.workerName}"></td>
+    <td th:text="${entry.carBrand}"></td>
+    <td th:text="${entry.carCount}"></td>
+    <td th:text="${entry.repairTime}"></td>
+    <td th:text="${entry.defect}"></td>
+  </tr>
+  </tbody>
+</table>
+<div>
+  <a href="/" class="button">Вернуться в меню</a>
+</div>
+</body>
+</html>
