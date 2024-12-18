@@ -63,12 +63,12 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="defect : ${defects}">
-        <td th:text="${defect.defectId}"></td>
+    <th:block th:each="defect : ${defects}">
+        <td th:text="${defect.id}"></td>
         <td th:text="${defect.description}"></td>
         <td th:text="${defect.resolved ? 'Yes' : 'No'}"
             th:classappend="${defect.resolved ? 'resolved' : 'not-resolved'}"></td>
-    </tr>
+    </th:block>
     </tbody>
 </table>
 <div>

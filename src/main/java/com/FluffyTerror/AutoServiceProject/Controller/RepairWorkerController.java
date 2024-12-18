@@ -27,9 +27,10 @@ public class RepairWorkerController {
     }
 
     // Информация о рабочем по выбранному дефекту
+    // Информация о ремонте по выбранному дефекту
     @GetMapping("/{defectId}")
-    public String getRepairWorker(@PathVariable Long defectId, Model model) {
-        model.addAttribute("workers", repairService.getRepairWorkerByDefectId(defectId));
+    public String getRepairDetails(@PathVariable Long defectId, Model model) {
+        model.addAttribute("repair", repairService.getRepairDetailsByDefectId(defectId));
         return "repair-worker-details"; // Шаблон для отображения деталей ремонта
     }
 }

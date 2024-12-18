@@ -47,8 +47,8 @@ public class CarOwnerService {
         return carOwnerRepository.findCarDefectsByOwner(ownerName);
     }
 
-    public Optional<Object[]> getOwnerInfoByCarNumber(String adminNumber) {
-        return carOwnerRepository.findOwnerInfoByCarNumber(adminNumber);
+    public Optional<CarOwner> getOwnerInfoByCarNumber(String carNumber) {
+        return carOwnerRepository.findByCarsAdministrativeNumber(carNumber);
     }
 }
 

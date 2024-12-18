@@ -6,10 +6,12 @@ import jakarta.persistence.*;
 @Table(name = "Defects")
 public class Defect {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "defect_id")
-    private Long defectId;
+    private Long id;
+    // Геттеры и сеттеры
 
     @ManyToOne
     @JoinColumn(name = "car_id", nullable = false)
@@ -22,12 +24,13 @@ public class Defect {
     private Boolean resolved = false;
 
     // Геттеры и сеттеры
-    public Long getDefectId() {
-        return defectId;
+    // Исправленные геттеры и сеттеры
+    public Long getId() {
+        return id;
     }
 
-    public void setDefectId(Long defectId) {
-        this.defectId = defectId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Car getCar() {

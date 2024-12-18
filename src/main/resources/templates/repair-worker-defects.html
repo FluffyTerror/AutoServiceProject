@@ -47,10 +47,10 @@
     </thead>
     <tbody>
     <tr th:each="defect : ${defects}">
-        <td th:text="${defect.defectId}"></td>
+        <td th:text="${defect.id}"></td>
         <td th:text="${defect.description}"></td>
         <td th:text="${defect.resolved ? 'Да' : 'Нет'}"></td>
-        <td><a th:href="@{'/repair-worker/' + ${defect.defectId}}">Подробнее</a></td>
+        <td><a th:href="@{'/repair-worker/' + ${defect.id}}">Подробнее</a></td>
     </tr>
     </tbody>
 </table>

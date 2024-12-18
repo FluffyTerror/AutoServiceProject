@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Добавление информации о ремонте</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f9;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .form-container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    label {
+        margin-bottom: 5px;
+        color: #555;
+    }
+
+    input, select {
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    .back-button {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .back-button a {
+        text-decoration: none;
+        color: #007bff;
+    }
+
+    .back-button a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<div class="form-container">
+  <h1>Создать новый ремонт</h1>
+  <form th:action="@{/repair/create}" th:object="${repair}" method="post">
+    <label for="date">Дата ремонта:</label>
+    <input type="date" id="date" th:field="*{date}" required/>
+
+    <label for="startTime">Время начала:</label>
+    <input type="time" id="startTime" th:field="*{startTime}" required/>
+
+    <label for="endTime">Время окончания:</label>
+    <input type="time" id="endTime" th:field="*{endTime}" required/>
+
+    <label for="defect">Выберите дефект:</label>
+    <select id="defect" th:field="*{defect}">
+      <option th:each="defect : ${defects}"
+              th:value="${defect.id}"
+              th:text="${defect.description}">
+      </option>
+    </select>
+
+    <label for="id">Работник:</label>
+    <select id="id" th:field="*{worker.id}" required>
+      <option th:each="worker : ${workers}"
+              th:value="${worker.id}"
+              th:text="${worker.fullName}">
+      </option>
+    </select>
+
+    <button type="submit">Создать</button>
+  </form>
+  <div class="back-button">
+    <a href="/">Вернуться в меню</a>
+  </div>
+</div>
+</body>
+</html>

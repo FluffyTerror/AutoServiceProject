@@ -10,8 +10,16 @@ public class Repair {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "repair_id")
     private Long repairId;
+
+    @Column(name = "date", nullable = false)
+    private LocalDate date;
+
+    @Column(name = "start_time", nullable = false)
+    private LocalTime startTime;
+
+    @Column(name = "end_time", nullable = false)
+    private LocalTime endTime;
 
     @ManyToOne
     @JoinColumn(name = "defect_id", nullable = false)
@@ -21,14 +29,10 @@ public class Repair {
     @JoinColumn(name = "worker_id", nullable = false)
     private Worker worker;
 
-    @Column(name = "repair_date", nullable = false)
-    private LocalDate repairDate;
-
-    @Column(name = "start_time", nullable = false)
-    private LocalTime startTime;
-
-    @Column(name = "end_time", nullable = false)
-    private LocalTime endTime;
+    @Transient
+    public String getDescription() {
+        return defect != null ? defect.getDescription() : null;
+    }
 
     // Геттеры и сеттеры
     public Long getRepairId() {
@@ -55,12 +59,13 @@ public class Repair {
         this.worker = worker;
     }
 
-    public LocalDate getRepairDate() {
-        return repairDate;
+    // Геттер для даты
+    public LocalDate getDate() {
+        return date;
     }
 
-    public void setRepairDate(LocalDate repairDate) {
-        this.repairDate = repairDate;
+    public void setDate(LocalDate date) {
+        this.date = date;
     }
 
     public LocalTime getStartTime() {

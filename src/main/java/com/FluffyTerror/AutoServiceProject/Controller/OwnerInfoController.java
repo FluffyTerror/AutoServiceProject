@@ -25,7 +25,12 @@ public class OwnerInfoController {
     // Информация о владельце по номеру машины
     @GetMapping("/{carNumber}")
     public String getOwnerInfo(@PathVariable String carNumber, Model model) {
-        model.addAttribute("owner", carOwnerService.getOwnerInfoByCarNumber(carNumber));
+        carOwnerService.getOwnerInfoByCarNumber(carNumber)
+                .ifPresentOrElse(
+                        owner -> model.addAttribute("owner", owner),
+                        () -> model.addAttribute("error", "Владелец с таким номером не найден")
+                );
         return "owner-info-details"; // Шаблон для отображения информации о владельце
     }
+
 }

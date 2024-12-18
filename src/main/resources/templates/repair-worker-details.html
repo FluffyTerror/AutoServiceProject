@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Информация о рабочем</title>
+    <title>Детали ремонта</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -12,14 +12,14 @@
         h1 {
             color: #333;
         }
-        p {
-            margin-bottom: 10px;
-        }
-        .worker-details {
+        .details-container {
             padding: 20px;
             background-color: #ffffff;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
             border-radius: 5px;
+        }
+        p {
+            margin-bottom: 10px;
         }
         a {
             text-decoration: none;
@@ -34,14 +34,16 @@
     </style>
 </head>
 <body>
-<h1>Информация о рабочем</h1>
-<div class="worker-details">
-    <th:block th:each="worker : ${workers}">
-        <p>Имя: <span th:text="${worker.fullName}"></span></p>
-    </th:block>
+<h1>Детали ремонта</h1>
+<div class="details-container">
+    <p>Дата ремонта: <span th:text="${repair.date}"></span></p>
+    <p>Время ремонта: <span th:text="${repair.startTime}"></span> - <span th:text="${repair.endTime}"></span></p>
+    <p>Дефект: <span th:text="${repair.description}"></span></p>
+    <p>Работник: <span th:text="${repair.worker.fullName}"></span></p>
 </div>
 <div class="back-button">
     <a href="/" class="button">Вернуться в меню</a>
 </div>
 </body>
 </html>
+

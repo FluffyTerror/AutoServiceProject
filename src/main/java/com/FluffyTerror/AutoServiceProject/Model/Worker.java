@@ -6,21 +6,23 @@ import jakarta.persistence.*;
 @Table(name = "Workers")
 public class Worker {
 
+
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "worker_id")
-    private Long workerId;
+    private Long id;
 
     @Column(name = "full_name", nullable = false)
     private String fullName;
 
     // Геттеры и сеттеры
-    public Long getWorkerId() {
-        return workerId;
+
+    public Long getId() {
+        return id;
     }
 
-    public void setWorkerId(Long workerId) {
-        this.workerId = workerId;
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getFullName() {
