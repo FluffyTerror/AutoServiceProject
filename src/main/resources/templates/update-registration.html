@@ -3,6 +3,83 @@
 <head>
   <meta charset="UTF-8">
   <title>Изменение регистрационного номера</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    h1 {
+      color: #333;
+      margin: 20px 0;
+      font-size: 2em;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 20px auto;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    li {
+      background: #ffffff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      padding: 15px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    p {
+      margin: 0 0 10px;
+      font-size: 1em;
+      color: #555;
+    }
+
+    label {
+      display: block;
+      font-size: 0.9em;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"] {
+      width: calc(100% - 20px);
+      padding: 8px 10px;
+      margin-bottom: 10px;
+      font-size: 1em;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    button {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      padding: 10px 15px;
+      font-size: 1em;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    button:focus {
+      outline: none;
+    }
+  </style>
 </head>
 <body>
 <h1 th:text="'Изменение регистрационного номера для: ' + ${owner.fullName}"></h1>
@@ -10,8 +87,8 @@
   <li th:each="car : ${cars}">
     <p th:text="'Автомобиль: ' + ${car.manufacturer} + ' ' + ${car.brand} + ' (' + ${car.administrativeNumber} + ')'"></p>
     <form th:action="@{/car-owners/update-registration/{carId}(carId=${car.carId})}" method="post">
-      <label>Новый регистрационный номер:</label>
-      <input type="text" name="newRegistrationNumber" required />
+      <label for="newRegistrationNumber">Новый регистрационный номер:</label>
+      <input type="text" id="newRegistrationNumber" name="newRegistrationNumber" required />
       <button type="submit">Изменить</button>
     </form>
   </li>
