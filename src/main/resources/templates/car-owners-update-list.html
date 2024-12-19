@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Выбор владельца</title>
+</head>
+<body>
+<h1>Выберите владельца для изменения регистрационного номера</h1>
+<ul>
+    <li th:each="owner : ${carOwners}">
+        <a th:href="@{/car-owners/update-registration/{ownerId}(ownerId=${owner.id})}"
+           th:text="${owner.fullName}"></a>
+    </li>
+</ul>
+</body>
+</html>

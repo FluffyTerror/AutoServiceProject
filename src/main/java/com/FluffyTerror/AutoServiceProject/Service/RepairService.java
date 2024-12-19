@@ -70,4 +70,9 @@ public class RepairService {
 
         return report;
     }
+
+
+    public void deleteRepairsByWorkerId(Long workerId) {
+        repairRepository.deleteByWorkerId(workerId);
+    }
 }

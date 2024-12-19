@@ -2,7 +2,9 @@ package com.FluffyTerror.AutoServiceProject.Repository;
 
 import com.FluffyTerror.AutoServiceProject.Model.Car;
 import com.FluffyTerror.AutoServiceProject.Model.Repair;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,5 +29,9 @@ public interface RepairRepository extends JpaRepository<Repair, Long> {
     List<Car> findCarsRepairedByWorker(@Param("workerId") Long workerId);
 
     List<Repair> findByWorkerId(Long workerId);
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM Repair r WHERE r.worker.id = :workerId")
+    void deleteByWorkerId(@Param("workerId") Long workerId);
 
 }

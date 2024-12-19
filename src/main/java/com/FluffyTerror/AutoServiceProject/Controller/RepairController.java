@@ -53,4 +53,15 @@ public class RepairController {
         model.addAttribute("worker", workerService.getWorkerById(workerId));
         return "worker-repairs"; // Шаблон для отображения ремонтов конкретного работника
     }
+    @GetMapping("/delete")
+    public String showWorkersForDeletion(Model model) {
+        model.addAttribute("workers", workerService.getAllWorkers());
+        return "delete-worker-list"; // Шаблон для отображения списка работников
+    }
+
+    @GetMapping("/delete/{workerId}")
+    public String deleteWorker(@PathVariable Long workerId) {
+        workerService.deleteWorkerById(workerId);
+        return "redirect:/repair/delete"; // Перенаправление на список после удаления
+    }
 }

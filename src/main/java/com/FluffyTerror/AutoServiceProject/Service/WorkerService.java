@@ -12,6 +12,8 @@ import java.util.List;
 public class WorkerService {
     @Autowired
     private WorkerRepository workerRepository;
+    @Autowired
+    private RepairService repairService;
 
     public List<Worker> getAllWorkers() {
         return workerRepository.findAll();
@@ -20,5 +22,18 @@ public class WorkerService {
     public Worker getWorkerById(Long workerId) {
         return workerRepository.findById(workerId)
                 .orElseThrow(() -> new EntityNotFoundException("Worker not found with id: " + workerId));
+    }
+
+
+    public void deleteWorkerById(Long workerId) {
+        // Удалить все ремонты, связанные с работником
+        repairService.deleteRepairsByWorkerId(workerId);
+
+        // Удалить самого работника
+        if (workerRepository.existsById(workerId)) {
+            workerRepository.deleteById(workerId);
+        } else {
+            throw new IllegalArgumentException("Работник с ID " + workerId + " не найден.");
+        }
     }
 }

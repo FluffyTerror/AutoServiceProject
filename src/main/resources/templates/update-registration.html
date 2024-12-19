@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Изменение регистрационного номера</title>
+</head>
+<body>
+<h1 th:text="'Изменение регистрационного номера для: ' + ${owner.fullName}"></h1>
+<ul>
+  <li th:each="car : ${cars}">
+    <p th:text="'Автомобиль: ' + ${car.manufacturer} + ' ' + ${car.brand} + ' (' + ${car.administrativeNumber} + ')'"></p>
+    <form th:action="@{/car-owners/update-registration/{carId}(carId=${car.carId})}" method="post">
+      <label>Новый регистрационный номер:</label>
+      <input type="text" name="newRegistrationNumber" required />
+      <button type="submit">Изменить</button>
+    </form>
+  </li>
+</ul>
+</body>
+</html>

@@ -56,4 +56,24 @@ public class CarOwnerController {
         carOwnerRepository.deleteById(id);
         return "redirect:/car-owners";
     }
+    @GetMapping("/update-registration")
+    public String showCarOwnersForUpdate(Model model) {
+        List<CarOwner> carOwners = carOwnerRepository.findAll();
+        model.addAttribute("carOwners", carOwners);
+        return "car-owners-update-list"; // Шаблон с выбором владельца
+    }
+
+    @GetMapping("/update-registration/{ownerId}")
+    public String showUpdateRegistrationForm(@PathVariable Long ownerId, Model model) {
+        CarOwner owner = carOwnerRepository.findById(ownerId).orElse(null);
+        model.addAttribute("owner", owner);
+        model.addAttribute("cars", carService.getCarsByOwnerId(ownerId));
+        return "update-registration"; // Шаблон формы изменения номера
+    }
+
+    @PostMapping("/update-registration/{carId}")
+    public String updateRegistrationNumber(@PathVariable Long carId, @RequestParam String newRegistrationNumber) {
+        carService.updateCarRegistrationNumber(carId, newRegistrationNumber);
+        return "redirect:/car-owners/update-registration";
+    }
 }

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Удаление работника</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        padding: 20px;
+    }
+    h1 {
+        text-align: center;
+    }
+    .worker-list {
+        max-width: 800px;
+        margin: 0 auto;
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        padding: 20px;
+    }
+    .worker-item {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    .worker-item:last-child {
+        border-bottom: none;
+    }
+    a {
+        color: #f44336;
+        text-decoration: none;
+    }
+    a:hover {
+        text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+<h1>Список работников</h1>
+<div class="worker-list">
+  <div th:each="worker : ${workers}" class="worker-item">
+    <span th:text="${worker.fullName}"></span>
+    <a th:href="@{/repair/delete/{workerId}(workerId=${worker.id})}">Удалить</a>
+  </div>
+</div>
+</body>
+</html>
