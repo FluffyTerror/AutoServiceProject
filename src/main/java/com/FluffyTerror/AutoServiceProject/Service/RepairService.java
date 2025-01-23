@@ -41,17 +41,12 @@ public class RepairService {
         return repairRepository.findRepairWorkerByDefectId(defectId);
     }
     public void createRepair(Repair repair) {
-        // Убедитесь, что связанная сущность дефекта существует
         Defect defect = defectRepository.findById(repair.getDefect().getId())
                 .orElseThrow(() -> new RuntimeException("Дефект не найден"));
         repair.setDefect(defect);
-
-        // Убедитесь, что связанная сущность работника существует
         Worker worker = workerRepository.findById(repair.getWorker().getId())
                 .orElseThrow(() -> new RuntimeException("Работник не найден"));
         repair.setWorker(worker);
-
-        // Сохранение ремонта
         repairRepository.save(repair);
     }
     public List<Map<String, Object>> getStationReport(){
