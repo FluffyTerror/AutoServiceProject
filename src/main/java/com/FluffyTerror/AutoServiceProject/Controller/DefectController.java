@@ -38,11 +38,11 @@ public class DefectController {
         Defect defect = defectRepository.findById(id).orElse(null);
         if (defect == null) {
             model.addAttribute("errorMessage", "Дефект с указанным ID не найден.");
-            return "error-page"; // Шаблон для ошибки
+            return "error-page";
         }
         model.addAttribute("defect", defect); // Передаем информацию о дефекте
         model.addAttribute("owners", defectService.getOwnersByDefectId(id)); // Владельцы с этим дефектом
-        return "defect-owners"; // Шаблон для отображения владельцев
+        return "defect-owners";
     }
 
     @GetMapping("/defects/add")
